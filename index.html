@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedCom - High-Speed Internet</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9e9e9; /* Fondo general modificado */
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4b0082, #1e3a8a); /* Tono morado y azul fuerte */
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            max-height: 250px;
+            border-radius: 100px; 
+        }
+
+        button {
+            background-color: #4b0082; /* Morado fuerte */
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #1e3a8a; /* Azul fuerte */
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        #info-display {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f4ff;
+            border-radius: 8px;
+            font-size: 18px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            padding: 50px 20px;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #f1f5f9; /* Fondo suave para las tarjetas */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            color: #4b0082; /* Morado fuerte */
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .content {
+            display: none;
+            padding: 10px;
+            background-color: #f4f4f4;
+            margin-top: 10px;
+            border-radius: 5px;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            max-height: 0;
+        }
+
+        .content.show {
+            display: block;
+            max-height: 200px;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+        #prev,
+        #next {
+            position: absolute;
+            top: 50%; 
+            transform: translateY(-50%); 
+            background-color: rgba(0, 51, 102, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px; 
+            height: 40px; 
+            font-size: 20px; 
+            cursor: pointer;
+            z-index: 10; 
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <img src="imagess/logo.jpg" alt="Logotipo de SpeedCom" class="logo">
+            <h1>Bienvenido a SpeedCom</h1>
+            <p>Tu solución de Internet de alta velocidad</p>
+            <button id="show-mission">MISION</button>
+            <button id="show-vision">VISION</button>
+            <button id="show-values">VALORES</button>
+            <div id="info-display"></div>
+        </div>
+    </header>
+
+    <section class="features">
+        <h2>¿Por qué elegir SpeedCom?</h2>
+        <div class="cards">
+            <div class="card" onclick="toggleContent('speed')">
+                <h3>Velocidades ultrarrápidas</h3>
+                <p>Conexión rápida y confiable.</p>
+                <div id="speed" class="content">
+                    <p>Experimenta una velocidad de navegación excepcional con nuestras conexiones ultrarrápidas.</p>
+                </div>
+            </div>
+            <div class="card" onclick="toggleContent('plans')">
+                <h3>Planes ilimitados</h3>
+                <p>Datos sin límites para navegar.</p>
+                <div id="plans" class="content">
+                    <p>Disfruta de planes sin restricciones de datos, ideales para todos tus dispositivos.</p>
+                </div>
+            </div>
+            <div class="card" onclick="toggleContent('support')">
+                <h3>Soporte 24/7</h3>
+                <p>Estamos aquí cuando nos necesites.</p>
+                <div id="support" class="content">
+                    <p>Atención al cliente en todo momento para resolver cualquier inconveniente.</p>
+                </div>
+            </div>
+            <div class="card" onclick="toggleContent('prices')">
+                <h3>Precios flexibles</h3>
+                <p>Planes accesibles para todos.</p>
+                <div id="prices" class="content">
+                    <p>Precios que se ajustan a tu presupuesto, con opciones para todos los gustos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <h3>PLAN BASICO</h3>
+                <p>100 Mbps for $19.99/month</p>
+            </div>
+            <div class="carousel-slide">
+                <h3>PLAN MEDIO</h3>
+                <p>500 Mbps for $49.99/month</p>
+            </div>
+            <div class="carousel-slide">
+                <h3>PLAN PREMIUM</h3>
+                <p>1 Gbps for $99.99/month</p>
+            </div>
+        </div>
+        <button id="prev">❮</button>
+        <button id="next">❯</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SpeedCom. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61563306055776&mibextid=ZbWKwL" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/speedcomwireless/profilecard/?igsh=OXhrY3hsZWV0YW56" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@speedcom.wireless?_t=8rDEJhSSnHM&_r=1" target="_blank">Tik Tok</a>
+        </div>
+        <p>Contactanos por email: <a href="mailto:s3305773@gmail.com">s3305773@gmail.com</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('show-mission').addEventListener('click', () => {
+            document.getElementById('info-display').textContent = 'Nuestra misión es proporcionar internet de alta velocidad accesible para todos.';
+        });
+
+        document.getElementById('show-vision').addEventListener('click', () => {
+            document.getElementById('info-display').textContent = 'Nuestra visión es liderar la conectividad digital en todo el país.';
+        });
+
+        document.getElementById('show-values').addEventListener('click', () => {
+            document.getElementById('info-display').textContent = 'Innovación, Compromiso y Transparencia.';
+        });
+
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('show');
+        }
+
+        let currentIndex = 0; 
+        const slides = document.querySelectorAll('.carousel-slide'); 
+        const totalSlides = slides.length; 
+
+        document.getElementById('next').addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % totalSlides; 
+            updateCarousel();
+        });
+
+        document.getElementById('prev').addEventListener('click', function() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
